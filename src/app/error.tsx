@@ -1,6 +1,11 @@
 'use client'
 
 import Link from "@/ui/base/Link"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+	title: 'Fernando Petri | Error'
+}
 
 export default function Page() {
 	return (

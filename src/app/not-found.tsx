@@ -1,4 +1,9 @@
 import Link from "@/ui/base/Link"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+	title: 'Fernando Petri | 404'
+}
 
 export default function Page() {
 	return (

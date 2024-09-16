@@ -4,7 +4,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { GeistSans } from 'geist/font/sans'
 
 export const metadata: Metadata = {
-	title: 'Portfolio'
+	title: 'Fernando Petri | Portfolio'
 }
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
