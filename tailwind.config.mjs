@@ -12,7 +12,7 @@ export default {
 			primary: '#EDEDED',
 			secondary: '#000000',
 			third: '#A1A1A1',
-         fourth: '#FFFFFF',
+         fourth: '#FFFFFF40',
 			link: '#2E7CD8'
 		}
 	}
