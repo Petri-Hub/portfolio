@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: React.PropsWithChildren) {
 	return (
 		<html lang='pt-br' className={GeistSans.className}>
-			<body>
+			<body className='h-screen bg-secondary'>
 				<SpeedInsights />
 				{children}
 			</body>
