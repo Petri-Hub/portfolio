@@ -1,6 +1,15 @@
-export default function Text({ children }: React.PropsWithChildren) {
+import { twMerge } from 'tailwind-merge'
+
+export default function Text({
+	children,
+	className
+}: React.HTMLAttributes<HTMLParagraphElement>) {
 	return (
-		<p className='text-large font-normal inline-block text-third leading-loose'>
+		<p
+			className={twMerge(
+				'inline-block text-base font-normal leading-relaxed text-third',
+				className
+			)}>
 			{children}
 		</p>
 	)
