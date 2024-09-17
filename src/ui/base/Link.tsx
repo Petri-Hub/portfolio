@@ -1,16 +1,14 @@
 import NextLink, { LinkProps } from 'next/link'
 
 type BaseLinkProps = {
-   className?: string
-} & LinkProps & React.PropsWithChildren
+	className?: string
+} & LinkProps &
+	React.PropsWithChildren
 
-export default function Link({
-	children,
-	...props
-}: BaseLinkProps) {
+export default function Link({ children, ...props }: BaseLinkProps) {
 	return (
-		<NextLink className='font-semibold text-link' {...props}>
+		<NextLink className='block font-semibold text-link' {...props}>
 			{children}
-		</NextLink> 
+		</NextLink>
 	)
 }

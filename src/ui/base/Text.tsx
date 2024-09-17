@@ -7,7 +7,7 @@ export default function Text({
 	return (
 		<p
 			className={twMerge(
-				'inline-block text-base font-normal leading-relaxed text-third',
+				'text-base font-normal leading-relaxed text-third',
 				className
 			)}>
 			{children}
