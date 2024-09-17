@@ -2,7 +2,8 @@
    "extends": [
       "next/core-web-vitals",
       "next/typescript",
-      "prettier"
+      "prettier",
+      "plugin:tailwindcss/recommended"
    ],
    "rules": {
       "import/no-anonymous-default-export": "off"
