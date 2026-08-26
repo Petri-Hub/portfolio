@@ -5,3 +5,9 @@ out
 .vercel
 next-env.d.ts
 *.tsbuildinfo
+
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example

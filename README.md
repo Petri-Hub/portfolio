@@ -16,6 +16,7 @@
 - [Structure](#Structure)
 - [Running Locally](#RunningLocally)
 - [Deployment](#Deployment)
+- [DNS](#DNS)
 
 <br>
 <h2 id="About">About</h2>
@@ -71,3 +72,23 @@ Types are checked separately with `npm run typecheck`, which is what CI runs bef
 Deployed on Vercel. `master` is the production branch, so every push to it publishes.
 
 The Quality Gate workflow runs the typecheck, the build and the tests on every push and pull request targeting `master`.
+
+<br>
+<h2 id="DNS">DNS</h2>
+
+`petri.zip` is registered elsewhere and delegated to Cloudflare, so the records that point it at Vercel — the apex and `www` — are declared in `infra/` with the Cloudflare provider.
+
+**This state owns DNS records and nothing else.** The zone is shared with other things I run, and zone level settings are managed somewhere else — declaring any of them here would make two states fight over the same object on every apply.
+
+Neither record is proxied on purpose. Vercel terminates TLS itself, so putting the Cloudflare proxy in front of it stacks a second CDN on the path and gets in the way of certificate issuance.
+
+Applying it needs a Cloudflare API token with `Zone:Read` and `DNS:Edit`, scoped to that single zone:
+
+```sh
+cd infra
+cp terraform.auto.tfvars.example terraform.auto.tfvars   # then fill in the token and the zone id
+terraform init
+terraform plan
+```
+
+Both the variables file and the state are local, and git ignores them.
