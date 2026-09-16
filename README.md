@@ -1,94 +1,41 @@
-<div align="center">
-  <h1>🪪 petri.zip</h1>
-  <p><b>My personal page. One screen, no dependency beyond the framework.</b></p>
-
-  ![Website](https://img.shields.io/website?url=https%3A%2F%2Fpetri.zip)
-  ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Petri-Hub/portfolio/quality-gate.yml)
-  ![GitHub top language](https://img.shields.io/github/languages/top/Petri-Hub/portfolio)
-  ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/Petri-Hub/portfolio)
-</div>
+<h1 align="center">💼 portfolio</h1>
 
 <br>
-<h2>Table of Contents</h2>
 
-- [About](#About)
-- [Stack](#Stack)
-- [Structure](#Structure)
-- [Running Locally](#RunningLocally)
-- [Deployment](#Deployment)
-- [DNS](#DNS)
+<h3 align="center">The page behind petri.zip.<br>A single screen that says who I am, while the real portfolio is built</h3>
+
+<p align="center">
+  <a href="https://petri.zip"><img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fpetri.zip&label=petri.zip" /></a> <a href="https://github.com/Petri-Hub/portfolio/actions/workflows/quality-gate.yml"><img alt="Quality gate" src="https://img.shields.io/github/actions/workflow/status/Petri-Hub/portfolio/quality-gate.yml?label=quality%20gate&logo=githubactions&logoColor=white" /></a> <a href="https://github.com/Petri-Hub/portfolio/commits/master"><img alt="Last commit" src="https://img.shields.io/github/last-commit/Petri-Hub/portfolio" /></a>
+</p>
 
 <br>
-<h2 id="About">About</h2>
 
-**TL;DR:** a single static page on Next.js 16, black and white, no runtime dependency other than React and Next itself.
+## About
 
-This is the provisional version. It exists because the domain was already published on my LinkedIn and GitHub while the site was down, so the priority was a page that loads and says who I am, not the final design.
+> **TL;DR:** a temporary page. The domain was already on my LinkedIn and GitHub while the site was down, so the first goal was a page that loads and says who I am: one static screen with no CMS, database or analytics. A proper portfolio will replace it.
 
-Everything renders at build time. There is no CMS, no database, no analytics and no contact form.
-
-<br>
-<h2 id="Stack">Stack</h2>
-
-- **Next.js 16 with the App Router:** the whole site is three files under `app/`. The routing is a formality here, but it is what the deployment target expects.
-- **Plain CSS:** no framework. One layout with a single breakpoint does not pay for the setup a utility framework asks for.
-- **next/font:** Geist Sans and Geist Mono are downloaded at build time and served from the same origin, **so the page makes no third-party request at runtime.**
-- **next/og:** the Open Graph image is generated during the build, which avoids keeping a binary in the repository.
-
-<br>
-<h2 id="Structure">Structure</h2>
-
-```
-app
-├── layout.tsx            metadata, Open Graph, fonts
-├── page.tsx              the entire page
-├── globals.css           every style
-├── icon.svg              favicon
-└── opengraph-image.tsx   OG image, generated at build time
-```
-
-<br>
-<h2 id="RunningLocally">Running Locally</h2>
-
-Node 24 is required, and it is pinned through `engines` in `package.json`.
+## What's inside
 
 ```sh
-npm install
-npm run dev
+├── .github  # quality gate: typecheck and build on every push and pull request
+├── app      # the page itself, its styles and the Open Graph image
+└── infra    # Terraform for the petri.zip DNS records on Cloudflare
 ```
 
-To reproduce what gets deployed, build it and serve the output. Under a minute on a warm cache:
+## Technologies
 
-```sh
-npm run build
-npm start
-```
+<table align="center">
+  <tr>
+    <td align="center" width="96"><img src="https://cdn.simpleicons.org/nextdotjs/9198A1" width="48" height="48" alt="Next.js" /><br>Next.js</td>
+    <td align="center" width="96"><img src="https://cdn.simpleicons.org/react" width="48" height="48" alt="React" /><br>React</td>
+    <td align="center" width="96"><img src="https://cdn.simpleicons.org/typescript" width="48" height="48" alt="TypeScript" /><br>TypeScript</td>
+    <td align="center" width="96"><img src="https://cdn.simpleicons.org/vercel/9198A1" width="48" height="48" alt="Vercel" /><br>Vercel</td>
+    <td align="center" width="96"><img src="https://cdn.simpleicons.org/cloudflare" width="48" height="48" alt="Cloudflare" /><br>Cloudflare</td>
+    <td align="center" width="96"><img src="https://cdn.simpleicons.org/terraform" width="48" height="48" alt="Terraform" /><br>Terraform</td>
+    <td align="center" width="96"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" width="48" height="48" alt="GitHub Actions" /><br>GitHub Actions</td>
+  </tr>
+</table>
 
-Types are checked separately with `npm run typecheck`, which is what CI runs before the build so a type error fails fast.
+## Visiting
 
-<br>
-<h2 id="Deployment">Deployment</h2>
-
-Deployed on Vercel. `master` is the production branch, so every push to it publishes.
-
-The Quality Gate workflow runs the typecheck, the build and the tests on every push and pull request targeting `master`.
-
-<br>
-<h2 id="DNS">DNS</h2>
-
-`petri.zip` is registered elsewhere and delegated to Cloudflare, so the records that point it at Vercel — the apex and `www` — are declared in `infra/` with the Cloudflare provider.
-
-**This state owns DNS records and nothing else.** The zone is shared with other things I run, and zone level settings are managed somewhere else — declaring any of them here would make two states fight over the same object on every apply.
-
-Neither record is proxied on purpose. Vercel terminates TLS itself, so putting the Cloudflare proxy in front of it stacks a second CDN on the path and gets in the way of certificate issuance.
-
-Applying it needs a Cloudflare API token with `Zone:Read` and `DNS:Edit`, scoped to that single zone:
-
-```sh
-cd infra
-cp terraform.auto.tfvars.example terraform.auto.tfvars   # then fill in the token and the zone id
-terraform init
-terraform plan
-```
-
-Both the variables file and the state are local, and git ignores them.
+It's a single page, quicker to see than to describe: [petri.zip](https://petri.zip).
