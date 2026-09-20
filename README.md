@@ -39,3 +39,7 @@
 ## Visiting
 
 It's a single page, quicker to see than to describe: [petri.zip](https://petri.zip).
+
+## Sample note
+
+This paragraph was added as a small pull-request test. It can be replaced with a project highlight, a short bio, or any other portfolio content.
